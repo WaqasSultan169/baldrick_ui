@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Help() {
+function Help_P() {
   return (
     <div className="d-flex justify-content-center my-4" id="help">
       <div className="border rounded bg-white" style={{ width: "700px" }}>
@@ -30,4 +30,4 @@ function Help() {
   );
 }
 
-export default Help;
+export default Help_P;
