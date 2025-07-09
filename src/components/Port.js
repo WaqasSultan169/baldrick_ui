@@ -15,8 +15,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from "@mui/icons-material/Close";
 
 function Port() {
-  const [openPort, setOpenPort] = useState(null); // tracks which port is opened
+  const [openPort, setOpenPort] = useState(null); 
   const [showForm, setShowForm] = useState(false);
+  const [editIndex, setEditIndex] = useState(null); 
+
   const [form, setForm] = useState({
     name: "",
     pixels: "",
@@ -34,17 +36,31 @@ function Port() {
 
   const handleSave = () => {
     const updatedModels = [...modelsByPort];
-    updatedModels[openPort] = [...updatedModels[openPort], form];
+    const currentModels = [...updatedModels[openPort]];
+  
+    if (editIndex !== null) {
+      currentModels[editIndex] = form; 
+    } else {
+      currentModels.push(form); 
+    }
+  
+    updatedModels[openPort] = currentModels;
     setModelsByPort(updatedModels);
+  
+    // Reset
     setForm({ name: "", pixels: "", brightness: "", position: "Start" });
     setShowForm(false);
+    setEditIndex(null);
   };
+  
 
   const handleEdit = (index) => {
     const modelToEdit = modelsByPort[openPort][index];
     setForm(modelToEdit);
+    setEditIndex(index);
     setShowForm(true);
   };
+  
   
 
   return (
