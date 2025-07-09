@@ -11,6 +11,7 @@ import {
   Button,
   InputAdornment,
 } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from "@mui/icons-material/Close";
 
 function Port() {
@@ -38,6 +39,13 @@ function Port() {
     setForm({ name: "", pixels: "", brightness: "", position: "Start" });
     setShowForm(false);
   };
+
+  const handleEdit = (index) => {
+    const modelToEdit = modelsByPort[openPort][index];
+    setForm(modelToEdit);
+    setShowForm(true);
+  };
+  
 
   return (
     <div className="d-flex justify-content-center my-4" id="ports">
@@ -92,6 +100,7 @@ function Port() {
                         <th>Start</th>
                         <th>Num of Pixels</th>
                         <th>Brightness</th>
+                        <th>Actions</th> 
                       </tr>
                     </thead>
                     <tbody>
@@ -101,6 +110,11 @@ function Port() {
                           <td>{model.position}</td>
                           <td>{model.pixels}</td>
                           <td>{model.brightness}%</td>
+                          <td>
+                                <IconButton size="small" onClick={() => handleEdit(index)}>
+                                <EditIcon fontSize="small" />
+                                </IconButton>
+                            </td>
                         </tr>
                       ))}
                     </tbody>
