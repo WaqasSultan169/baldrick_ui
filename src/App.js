@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Stats from "./components/Stats";
 import Test from "./components/Test";
 import Port from "./components/Port";
+import Help from "./components/Help";
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Stats />
       <Test />
       <Port />
+      <Help />
     </div>
   );
 }

@@ -20,11 +20,11 @@ function Port() {
     name: "",
     pixels: "",
     brightness: "",
-    position: "Start",
+    position: "",
   });
 
   const [modelsByPort, setModelsByPort] = useState(
-    Array(10).fill([]) // array of 10 empty model lists for each port
+    Array(10).fill([]) 
   );
 
   const handleTogglePort = (index) => {
@@ -118,7 +118,6 @@ function Port() {
         </div>
       </div>
 
-      {/* Modal Dialog for Model */}
       <Dialog open={showForm} onClose={() => setShowForm(false)} maxWidth="sm" fullWidth>
         <DialogTitle sx={{ m: 0, p: 2 }}>
           Add New Model
@@ -138,18 +137,18 @@ function Port() {
 
         <DialogContent dividers>
           <div className="container-fluid">
-            {[
-              ["Model Name", "name"],
-              ["Num Pixels", "pixels"],
-              ["Brightness", "brightness"],
-            ].map(([label, key]) => (
+          {[
+            ["Model Name", "name", "text"],
+            ["Num Pixels", "pixels", "number"],
+            ["Brightness", "brightness", "number"],
+            ].map(([label, key, type]) => (
               <div key={key} className="row mb-3 align-items-center">
                 <div className="col-3 text-end">
                   <label className="form-label mb-0">{label}</label>
                 </div>
                 <div className="col-7">
                   <TextField
-                    type="number"
+                    type={type}
                     size="small"
                     fullWidth
                     value={form[key]}
